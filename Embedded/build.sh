@@ -25,6 +25,7 @@ fi
 if [[ "${CLEAN:-}" == "true" ]]; then
   source "$CLEAN_SH"
 fi
+source "$GENERATE_WEB_HPP_SH"
 # ----- Assemble build args ----- #
 log INFO "Building mode: $PROJECT_MODE (pio operation: $PIO_OPERATION)" &
 LOG_PIDS+=($!)

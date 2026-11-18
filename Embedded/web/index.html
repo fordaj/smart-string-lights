@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart String Lights</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <main>
+      <header class="top-bar">
+        <h1>Smart String Lights</h1>
+
+        <label class="power-toggle" title="Power">
+          <input type="checkbox" id="power-toggle" checked />
+          <span class="slider"></span>
+        </label>
+      </header>
+
+      <section class="panel">
+        <div class="row-label">
+          <label for="brightness">Brightness</label>
+          <span id="brightness-value">50%</span>
+        </div>
+        <input type="range" id="brightness" min="0" max="255" value="128" />
+      </section>
+
+      <section>
+        <h2>Themes</h2>
+        <div class="theme-grid" id="theme-grid"></div>
+      </section>
+
+      <section class="panel">
+        <h2>New theme</h2>
+
+        <div class="form-row">
+          <input type="text" id="theme-name" placeholder="Theme name" maxlength="32" />
+          <select id="theme-mode">
+            <option value="stripes">Stripes</option>
+            <option value="gradient">Gradient</option>
+            <option value="solid">Solid</option>
+          </select>
+        </div>
+
+        <div id="color-rows"></div>
+
+        <div class="form-row">
+          <button class="button secondary" id="add-color" type="button">+ Add color</button>
+          <button class="button primary" id="save-theme" type="button">Save theme</button>
+        </div>
+
+        <p class="form-message" id="form-message"></p>
+      </section>
+    </main>
+  </body>
+</html>

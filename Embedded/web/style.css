@@ -1,0 +1,248 @@
+:root {
+  --bg: #10131a;
+  --panel: #1a1e27;
+  --panel-hover: #222633;
+  --text: #eceff4;
+  --muted: #9aa3b2;
+  --accent: #d6291f;
+  --accent-alt: #165b33;
+  --ring: #ffd98e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0 1rem;
+}
+
+.panel {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.row-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+}
+
+/* ─── Power toggle ─────────────────────────────────────────────── */
+.power-toggle {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 32px;
+}
+
+.power-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.power-toggle .slider {
+  cursor: pointer;
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  background: #3a3f4d;
+  transition: background 0.2s;
+}
+
+.power-toggle .slider::before {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 4px;
+  border-radius: 50%;
+  background: #eceff4;
+  transition: transform 0.2s;
+}
+
+.power-toggle input:checked + .slider {
+  background: var(--accent-alt);
+}
+
+.power-toggle input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* ─── Brightness slider ────────────────────────────────────────── */
+#brightness {
+  width: 100%;
+  accent-color: var(--ring);
+  height: 2rem;
+}
+
+/* ─── Theme grid ───────────────────────────────────────────────── */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.theme-card {
+  position: relative;
+  border: none;
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 0.5rem;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.theme-card:hover {
+  background: var(--panel-hover);
+}
+
+.theme-card.active {
+  outline: 2px solid var(--ring);
+}
+
+.theme-preview {
+  height: 48px;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background: #222;
+}
+
+.theme-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.theme-mode {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.theme-delete {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  border: none;
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--text);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ─── New theme form ───────────────────────────────────────────── */
+.form-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-row input[type="text"],
+.form-row select {
+  flex: 1;
+  background: #10131a;
+  color: var(--text);
+  border: 1px solid #333845;
+  border-radius: 8px;
+  padding: 0.6rem;
+  font: inherit;
+}
+
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.color-row input[type="color"] {
+  width: 48px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  padding: 0;
+}
+
+.color-row .hex {
+  flex: 1;
+  color: var(--muted);
+  font-family: ui-monospace, monospace;
+}
+
+.color-row button {
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.button.secondary {
+  background: #2a2f3c;
+  color: var(--text);
+}
+
+.form-message {
+  min-height: 1.2em;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.form-message.error {
+  color: #ff7b72;
+}

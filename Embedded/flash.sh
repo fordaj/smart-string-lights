@@ -15,7 +15,8 @@ if [[ -z "${PROJECT_MODE:-}" ]]; then
 fi
 
 # ----- Pre Flash Step ----- #
-# No web assets yet; once Embedded/web/ exists, stage it into $PIO_DATA_DIR here.
+# Web assets are embedded in the firmware (Embedded/web/ -> web.hpp via
+# Embedded/generate_web_hpp.sh); nothing to stage on a filesystem.
 PIO_DATA_DIR="${PIO_DATA_DIR:-data}"
 # ----- Build and Flash ----- #
 log INFO "Flashing mode: $PROJECT_MODE" &

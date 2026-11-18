@@ -20,7 +20,7 @@ The `scripts/` directory carries the repository's build/release/docs tooling: an
 
 Vernacular used in the headers (`log INFO`, `REPO_ROOT_DIR`, `VERSIONER_BIN`): read [entry.sh.md](entry.sh.md) first, then [env.sh.md](env.sh.md).
 
-The embedded task scripts live in [`Embedded/`](../Embedded/) (`build.sh`, `clean.sh`, `detect.sh`, `flash.sh`, `run.sh`, `setup_ide.sh`). The remaining AirFrame embedded scripts (`test.sh`, `release.sh`, `release_source.sh`, `generate_web_hpp.sh`) land when the corresponding functionality does; `scripts/.common.env` already carries the shared ESP32-S3 release payload lists. They share `Embedded/helpers.sh`, which sources `scripts/entry.sh` and adds the mode argument parsing, the `LOG_PIDS` bookkeeping, and the PlatformIO wrappers.
+The embedded task scripts live in [`Embedded/`](../Embedded/) (`build.sh`, `clean.sh`, `detect.sh`, `flash.sh`, `run.sh`, `setup_ide.sh`, `test.sh`, `generate_web_hpp.sh`). The remaining AirFrame embedded scripts (`release.sh`, `release_source.sh`, hardware `test.py`) land when the corresponding functionality does; `scripts/.common.env` already carries the shared ESP32-S3 release payload lists. They share `Embedded/helpers.sh`, which sources `scripts/entry.sh` and adds the mode argument parsing, the `LOG_PIDS` bookkeeping, and the PlatformIO wrappers.
 
 ## The cascade (why the dotfiles exist)
 
