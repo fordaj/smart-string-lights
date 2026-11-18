@@ -1,0 +1,10 @@
+.pio/
+.venv/
+node_modules/
+tools/
+.runners/
+.logs/
+temp/
+site/
+Embedded/lib/
+.version/

@@ -1,0 +1,14 @@
+{
+  "title": "Smart String Lights",
+  "exclude": [
+    "tools",
+    "site",
+    ".pio",
+    ".venv",
+    ".runners",
+    ".logs",
+    "temp",
+    "node_modules",
+    "Embedded/lib"
+  ]
+}

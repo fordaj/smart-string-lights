@@ -1,0 +1,44 @@
+# The runner-spawner script (`scripts/spawn-runners.sh`)
+
+```mermaid
+flowchart LR
+    spawn("<img src='barnacle:terminal.svg' width='20' alt=''/><br/>scripts/spawn-runners.sh") --> entry("<img src='barnacle:terminal.svg' width='20' alt=''/><br/><u>entry.sh → log()</u>")
+    entry --> bin("<img src='barnacle:binary.svg' width='20' alt=''/><br/>RUNNER_SPAWNER_BIN")
+    bin --> create("<img src='barnacle:rocket.svg' width='20' alt=''/><br/>runner-spawner create<br/>--config .runner-spawner.json")
+    create --> runners("<img src='barnacle:folder.svg' width='20' alt=''/><br/>.runners/<br/>runner01 · runner02")
+    click entry href "entry.sh.md"
+    class spawn,entry shFile
+    class runners folder
+    classDef shFile fill:#abe07a,stroke:#3f6212,color:#16280a
+    classDef folder fill:#f0c558,stroke:#8a6d1c,color:#332a05
+```
+
+Creates the repository-scoped self-hosted CI runners described by `.runner-spawner.json` (two runners, `runner01`/`runner02`, registered to `fordaj/smart-string-lights`, installed under `.runners/`, gitignored). The runners back the self-hosted GitHub Actions CI (see the CI rework issue).
+
+## Usage
+
+```bash
+./scripts/spawn-runners.sh                # create the runners in .runner-spawner.json
+./scripts/spawn-runners.sh --dry-run      # print what would happen, change nothing
+./scripts/spawn-runners.sh <flags...>     # any additional runner-spawner create flags
+```
+
+Sources [scripts/entry.sh](entry.sh.md) to resolve `RUNNER_SPAWNER_BIN` (bundled via `tools/runner-spawner/update.sh.md`) and the `log()` helper, then runs:
+
+```bash
+runner-spawner create --config .runner-spawner.json "$@"
+```
+
+from the repository root. Extra arguments are forwarded to the binary.
+
+## Details worth knowing
+
+- The script `unset`s `RUNNER_SPAWNER_REPO` and `RUNNER_SPAWNER_OWNER` before invoking the binary: those selectors are read by runner-spawner as the _target_ repository, and a stale value in the caller's shell would override `.runner-spawner.json` and the git remote. An explicit `--owner`/`--repo` flag (forwarded through `"$@"`) still wins.
+- It fails with a clear error when the binary or `.runner-spawner.json` is missing, or when the binary is not executable.
+- runner-spawner is macOS/Windows only, and requesting the registration token requires `gh` to be authenticated (or `--token`). On Linux the bundled binary still ships but reports unsupported (see [scripts/env.sh.md](env.sh.md)).
+
+## Related pages
+
+- `tools/runner-spawner/update.sh.md` — refreshing the bundled binary (not rendered in the site)
+- [scripts/entry.sh.md](entry.sh.md) · [scripts/env.sh.md](env.sh.md)
+- [README.md](../README.md) — the bundled-tooling overview

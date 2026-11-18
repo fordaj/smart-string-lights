@@ -1,3 +1,32 @@
+# Repo tooling
+__pycache__/
+temp/
+*.py.log
+**/*.egg-info/
+**/.logs/
+**/node_modules
+**/.venv
+.python-version
+*.doc.html
+*.mmd.svg
+*.mmd.dark.svg
+*.mmd.light.svg
+.version/
+data/
+*.log
+.runners/
+site/
+*.worktrees/
+
+# OS Files
+*.DS_Store
+
+# VSCode
+.vscode/
+
+# PlatformIO
+.pio/
+
 # Prerequisites
 *.d
 

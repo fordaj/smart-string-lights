@@ -1,0 +1,3 @@
+{
+  "commands": [["prettier"], ["black"], ["shfmt", "-i", "2"], ["taplo"]]
+}
