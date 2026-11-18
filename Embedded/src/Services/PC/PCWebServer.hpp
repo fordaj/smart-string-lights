@@ -8,8 +8,9 @@
 #include "httplib.h"
 #include "RESTServer.hpp"
 #include "web.hpp"
+#include "iWebServer.hpp"
 
-class PCWebServer
+class PCWebServer : public iWebServer
 {
   enum class Status
   {
@@ -23,7 +24,7 @@ public:
     Stop();
   }
 
-  void Init(void)
+  void Init(void) override
   {
     server.Get("/",
                [](const Request&)
@@ -138,6 +139,15 @@ public:
                     }
                     return Response::Json(themesJson().dump());
                   });
+    isInitialized = true;
+  }
+
+  void Poll(void) override
+  {
+    if (!IsRunning())
+    {
+      Start();
+    }
   }
 
   void Start(void)

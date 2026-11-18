@@ -1,0 +1,3 @@
+[submodule "Embedded/src/Common"]
+	path = Embedded/src/Common
+	url = git@github.com:fordaj/EmbeddedCommon.git
