@@ -1,7 +1,7 @@
 # smart-string-lights
 RGB holiday themed string lights with smart home support.
 
-Built on the same toolchain as [AirFrame](https://github.com/fordaj/AirFrame) (which this repo will eventually share code with via submodules — see [SUBMODULES.md](SUBMODULES.md)). Targets the same ESP32-S3 dev board.
+Built on the same toolchain as [AirFrame](https://github.com/fordaj/AirFrame) and shares code with it via the [`Embedded/src/Common`](.gitmodules) submodule ([fordaj/EmbeddedCommon](https://github.com/fordaj/EmbeddedCommon)). Targets the same ESP32-S3 dev board. Clone with `--recursive` (or `git submodule update --init`).
 
 ## Hardware
 
