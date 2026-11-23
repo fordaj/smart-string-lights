@@ -11,6 +11,14 @@
   #define LED_COUNT 50 // pixels on the strip
 #endif
 
+#ifndef WIFI_CONNECT_GRACE_SECONDS
+  // How long to give the STA to associate at boot before falling back to the
+  // configuration portal. Only a worst-case floor: the moment WiFi connects,
+  // the poll loop exits early — this never delays a successful connection,
+  // it only bounds how long a failed one can wedge the boot.
+  #define WIFI_CONNECT_GRACE_SECONDS 15
+#endif
+
 class ConfigurationSingleton
 {
 public:
@@ -38,6 +46,7 @@ public:
   static constexpr Time LightsPollingInterval    = 1 / LightsPollingRate;
   static constexpr uint8_t LEDDataPin            = LED_DATA_PIN;
   static constexpr uint16_t LEDPixelCount        = LED_COUNT;
+  static constexpr uint32_t WiFiConnectGraceMs   = WIFI_CONNECT_GRACE_SECONDS * 1000UL;
 
   // Service Enablement
   static constexpr bool isWebServerEnabled = true;

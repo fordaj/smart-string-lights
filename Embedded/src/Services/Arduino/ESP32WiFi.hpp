@@ -17,6 +17,8 @@ public:
     Serial.printf("Hostname: %s\n", hostname);
 
     WiFi.setHostname(hostname);
+    wm.setConfigPortalBlocking(false);
+    wm.setConnectTimeout(WIFI_CONNECT_GRACE_SECONDS);
 
     // Load our own persistent credentials from NVS.
     preferences.begin("wifi", true);
@@ -27,6 +29,10 @@ public:
     preferences.end();
 
     bootMillis_ = millis();
+
+    // Serving HTTP from a power-save WiFi is a terrible experience (huge
+    // latency, dropped packets); keep the radio on.
+    WiFi.setSleep(false);
 
     if (ssid.length() > 0)
     {
@@ -44,7 +50,6 @@ public:
     Serial.println("No saved WiFi credentials");
 
     // No credentials yet, so let WiFiManager start the portal.
-    wm.setConfigPortalBlocking(false);
   }
 
   void run()
@@ -88,7 +93,7 @@ public:
     // declares failure and starts the portal, which only the portal's
     // autoConnect then has to rescue — leaving the device off the LAN
     // whenever that fails. Wait before falling back to the portal.
-    if (!hadConnection && millis() - bootMillis_ < 15000)
+    if (!hadConnection && millis() - bootMillis_ < Configuration.WiFiConnectGraceMs)
     {
       if (millis() - lastWaitLog_ > 3000)
       {
